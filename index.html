@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+  </head>
+  <body>
+    <div><h1>Pokemon</h1></div>
+
+    <div>
+      <img src="assets/img/Garchomp.png" alt="Garchomp" width="200px" />
+
+      <!-- Buscador, lo utilizare para mas adelante -->
+      <div id="search-container">
+        <input type="text" id="search-input" placeholder="Buscar Pokémon..." />
+        <button id="buscarBtn">Buscar</button>
+      </div>
+    </div>
+
+    <div>
+      <h2>Estadisticas</h2>
+    </div>
+
+    <div>
+      <ol id="stats-list">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ol>
+    </div>
+
+    <div>
+      <h2>Sprites</h2>
+      <div class="sprites-container">
+        <img src="assets/img/Garchomp_DP.png" alt="Garchomp_M" />
+        <img src="assets/img/Garchomp_Pt.png" alt="Garchomp_F" />
+        <img src="assets/img/Garchomp_espalda_G4.png" alt="Garchomp_H" />
+      </div>
+    </div>
+
+    <div>
+      <h2>Sonido</h2>
+    </div>  
+    <div class="audio-container">
+      <audio controls id="ruido">
+        <source
+          src=""
+          type="audio/mpeg"
+        />
+        Tu navegador no soporta el audio, cambia de navegador.
+      </audio>
+    </div>
+    <script src="garchomp.js"></script>
+  </body>
+</html>
