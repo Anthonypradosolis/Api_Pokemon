@@ -46,6 +46,7 @@ btn.addEventListener("click", () => {
             });
             ruido.src = cries;
             
+            const criesApi = document.getElementById('');
         })
 })
 
