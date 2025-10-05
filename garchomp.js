@@ -28,25 +28,40 @@ btn.addEventListener("click", () => {
         .then((data) => {
             if (!data) return;
             
-            let stats = data.stats;
-            const cries = data.cries?.latest;
+            const stats = data.stats || [];
+            const criesUrl = data.cries?.latest || null; // URL del sonido del Pokémon, si existe
             const statsList = document.getElementById('stats-list');
             const listItems = statsList.getElementsByTagName('li');
 
             stats.forEach((stat, index) => {
-                let valor = stat.base_stat;
-                let nombre = stat.stat.name;
+                const valor = stat.base_stat;
+                const nombre = stat.stat.name;
 
-                // Actualizar el contenido de cada elemento li
                 if (listItems[index]) {
                     listItems[index].textContent = `${nombre}: ${valor}`;
                 }
 
                 console.log(`${nombre.toUpperCase()}: ${valor}`);
             });
-            ruido.src = cries;
-            
-            const criesApi = document.getElementById('');
+
+            const audioEl = document.getElementById('ruido');
+            const sourceEl = audioEl.querySelector('source');
+
+            if (criesUrl) {
+                if (sourceEl) {
+                    sourceEl.src = criesUrl;
+                    sourceEl.type = 'audio/ogg';
+                    audioEl.load();
+                } else {
+                    audioEl.src = criesUrl;
+                    audioEl.load();
+                }
+                console.log('Audio cargado:', criesUrl);
+            } else {
+                if (sourceEl) sourceEl.src = '';
+                audioEl.removeAttribute('src');
+                audioEl.load();
+            }
         })
 })
 
