@@ -19,6 +19,13 @@ img {
   margin: 10px auto;
 }
 
+/* Ocultar imágenes cuyo src esté vacío o no exista para evitar el icono roto al iniciar */
+img[src=""],
+img:not([src]) {
+  display: none;
+}
+
+
 #search-container {
   text-align: center;
   margin: 15px 0 30px 0;
