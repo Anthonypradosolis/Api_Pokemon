@@ -44,31 +44,66 @@ btn.addEventListener("click", () => {
                 console.log(`${nombre.toUpperCase()}: ${valor}`);
             });
 
-            const audioEl = document.getElementById('ruido');
-            const sourceEl = audioEl.querySelector('source');
-
-            if (criesUrl) {
-                if (sourceEl) {
-                    sourceEl.src = criesUrl;
-                    sourceEl.type = 'audio/ogg';
-                    audioEl.load();
-                } else {
-                    audioEl.src = criesUrl;
-                    audioEl.load();
-                }
-                console.log('Audio cargado:', criesUrl);
-            } else {
-                if (sourceEl) sourceEl.src = '';
-                audioEl.removeAttribute('src');
-                audioEl.load();
-            }
+            loadPokemonCry(criesUrl);
+            imagePokemon(data.sprites || {});
         })
 })
 
+function loadPokemonCry(criesUrl) {
+    const audioEl = document.getElementById('ruido');
+    const sourceEl = audioEl.querySelector('source');
 
+    if (criesUrl) {
+        if (sourceEl) {
+            sourceEl.src = criesUrl;
+            sourceEl.type = 'audio/ogg';
+            audioEl.load();
+        } else {
+            audioEl.src = criesUrl;
+            audioEl.load();
+        }
+        console.log('Audio cargado:', criesUrl);
+    } else {
+        if (sourceEl) sourceEl.src = '';
+        audioEl.removeAttribute('src');
+        audioEl.load();
+    }
 
+}
 
+function imagePokemon(sprites){
+    sprites = sprites || {};
+        // Elementos img en el HTML
+        const imgMain = document.getElementById('imagen');
+        const spriteFrontDefault = document.getElementById('sprite-front-default');
+        const spriteBackDefault = document.getElementById('sprite-back-default');
+        const spriteFrontShiny = document.getElementById('sprite-front-shiny');
+        const spriteBackShiny = document.getElementById('sprite-back-shiny');
+        //const spriteFrontFemale = document.getElementById('sprite-front-female');
+        //const spriteBackFemale = document.getElementById('sprite-back-female');
+        //const spriteFrontShinyFemale = document.getElementById('sprite-front-shiny-female');
+        //const spriteBackShinyFemale = document.getElementById('sprite-back-shiny-female');
 
+        // Helper para setear src u ocultar si es null
+        const setImg = (el, url) => {
+            if (!el) return;
+            if (url) {
+                el.src = url;
+                el.style.display = '';
+            } else {
+                // Si no hay imagen, ocultar para que no muestre un broken image
+                el.style.display = 'none';
+            }
+        }
 
-
-
+        setImg(imgMain, sprites.front_default || imgMain.src);
+        setImg(spriteFrontDefault, sprites.front_default);
+        setImg(spriteBackDefault, sprites.back_default);
+        setImg(spriteFrontShiny, sprites.front_shiny);
+        setImg(spriteBackShiny, sprites.back_shiny);
+        //setImg(spriteFrontFemale, sprites.front_female);
+        //setImg(spriteBackFemale, sprites.back_female);
+        //setImg(spriteFrontShinyFemale, sprites.front_shiny_female);
+        //setImg(spriteBackShinyFemale, sprites.back_shiny_female);
+    
+}
