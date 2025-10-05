@@ -85,7 +85,9 @@ function imagePokemon(sprites){
         //const spriteBackShinyFemale = document.getElementById('sprite-back-shiny-female');
 
         // Helper para setear src u ocultar si es null
+        // el es el elemento img, url es la url de la imagen
         const setImg = (el, url) => {
+            // si el es null o undefined, salimos inmediatamente
             if (!el) return;
             if (url) {
                 el.src = url;
